@@ -1,0 +1,38 @@
+PODS:
+  - Alamofire (4.9.1)
+  - Magnetic (3.2.1)
+  - Realm (10.1.0):
+    - Realm/Headers (= 10.1.0)
+  - Realm/Headers (10.1.0)
+  - RealmSwift (10.1.0):
+    - Realm (= 10.1.0)
+  - SwiftCSV (0.6.0)
+  - SwiftyGif (5.3.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - Magnetic
+  - RealmSwift
+  - SwiftCSV
+  - SwiftyGif
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Magnetic
+    - Realm
+    - RealmSwift
+    - SwiftCSV
+    - SwiftyGif
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Magnetic: 02b9d6686160421cc4285140387419ec9ccab033
+  Realm: 100df88a0faf5328f48477427e4b3e1a1598bae3
+  RealmSwift: 725d1c10df64964b04aaa0058c19ce0f4b4c3f5a
+  SwiftCSV: ebc63cacc3820042537288c0cc647946261f7c2c
+  SwiftyGif: e466e86c660d343357ab944a819a101c4127cb40
+
+PODFILE CHECKSUM: e381acffa0124dac0094d8daab62ce4a47e58e7f
+
+COCOAPODS: 1.10.0

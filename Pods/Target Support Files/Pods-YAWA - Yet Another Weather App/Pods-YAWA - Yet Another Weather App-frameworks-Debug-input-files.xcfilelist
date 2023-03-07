@@ -1,0 +1,7 @@
+${PODS_ROOT}/Target Support Files/Pods-YAWA - Yet Another Weather App/Pods-YAWA - Yet Another Weather App-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/Magnetic/Magnetic.framework
+${BUILT_PRODUCTS_DIR}/Realm/Realm.framework
+${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework
+${BUILT_PRODUCTS_DIR}/SwiftCSV/SwiftCSV.framework
+${BUILT_PRODUCTS_DIR}/SwiftyGif/SwiftyGif.framework
