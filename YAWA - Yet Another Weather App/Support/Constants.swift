@@ -37,6 +37,8 @@ func urlGenerator(lat: Double, lon: Double) -> URL? {
 
 func aqiUrlGenerator(lat: Double, lon: Double) -> URL? {
   let urlString = "https://api.airvisual.com/v2/nearest_city?lat=\(lat)&lon=\(lon)&key=\(AQIAPIKEY)"
+    //http://api.airvisual.com/v2/nearest_city?lat={{LATITUDE}}&lon={{LONGITUDE}}&key={{YOUR_API_KEY}}
+    
   guard let url = URL(string: urlString)
     else { return nil }
     return url

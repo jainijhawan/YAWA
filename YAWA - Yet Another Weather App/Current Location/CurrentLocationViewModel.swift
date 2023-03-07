@@ -31,28 +31,28 @@ class CurrentLocationViewModel: CurrentLocationViewModeling {
     self.cityData = cityData
   }
   
-  func getCurrentCityData(lat: Double, lon: Double, completion: @escaping ((_ data: WeatherDataModel) -> Void)) {
-    APIManager.sharedManager.getCurrentCityData(lat: lat, lon: lon) {(success, data) in
-      if success {
-        if let weatherData = data as? WeatherDataModel {
-          self.weatherData = weatherData
-          self.createWeeklyCellModels(data: weatherData)
-          self.createHourlyCellModels(data: weatherData)
-          completion(weatherData)
+    func getCurrentCityData(lat: Double, lon: Double, completion: @escaping ((_ data: WeatherDataModel) -> Void)) {
+        APIManager.sharedManager.getCurrentCityData(lat: lat, lon: lon) {(success, data) in
+            guard success,
+                  let weatherData = data else { return }
+            DispatchQueue.main.async {
+                self.weatherData = weatherData
+                self.createWeeklyCellModels(data: weatherData)
+                self.createHourlyCellModels(data: weatherData)
+                completion(weatherData)
+            }
         }
-      }
     }
-  }
   
-  func getCurrentCityAQI(lat: Double, lon: Double, completion: @escaping ((_ data: AQIDataModel) -> Void)) {
-    APIManager.sharedManager.getCurrentCityAQI(lat: lat, lon: lon) { (success, data) in
-      if success {
-        if let aqiData = data as? AQIDataModel {
-          completion(aqiData)
+    func getCurrentCityAQI(lat: Double, lon: Double, completion: @escaping ((_ data: AQIDataModel) -> Void)) {
+        APIManager.sharedManager.getCurrentCityAQI(lat: lat, lon: lon) { (success, data) in
+            guard success,
+                  let aqiData = data else { return }
+            DispatchQueue.main.async {
+                completion(aqiData)
+            }
         }
-      }
     }
-  }
   
   func createHourlyCellModels(data: WeatherDataModel) {
     let dateFormatterPrint = DateFormatter()

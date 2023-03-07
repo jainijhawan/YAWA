@@ -7,52 +7,46 @@
 //
 
 import Foundation
-import Alamofire
-
 class APIManager {
   
   // MARK: - Variables
   static let sharedManager = APIManager()
-  let session = URLSession.shared
   
   func getCurrentCityData(lat: Double,
                           lon: Double,
-                          completion: @escaping (Bool,Any?)->Void) {
-    let url = urlGenerator(lat: lat, lon: lon)!
-    Alamofire.request(url, method: .get,
-                      encoding: JSONEncoding.default)
-      .validate()
-      .responseJSON(completionHandler: { (response) in
-      switch response.result {
-      case .success( _):
-        let decoder = JSONDecoder()
-        let data = try? decoder.decode(WeatherDataModel.self, from: response.data!)
-        completion(true, data)
-        break
-      case .failure( _):
-        break
-      }
-    }
-    )
+                          completion: @escaping (Bool, WeatherDataModel?)->Void) {
+      guard let url = urlGenerator(lat: lat, lon: lon) else { return }
+      URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
+          if let data = data {
+              if let weatherData = try? JSONDecoder().decode(WeatherDataModel.self, from: data) {
+                  completion(true, weatherData)
+              } else {
+                  print("Invalid Response")
+                  completion(false, nil)
+              }
+          } else if let error = error {
+              print("HTTP Request Failed \(error)")
+              completion(false, nil)
+          }
+      }.resume()
   }
+    
   func getCurrentCityAQI(lat: Double,
                          lon: Double,
-                         completion: @escaping (Bool,Any?)->Void) {
-    let url = aqiUrlGenerator(lat: lat, lon: lon)!
-    Alamofire.request(url, method: .get,
-                      encoding: JSONEncoding.default)
-      .validate()
-      .responseJSON(completionHandler: { (response) in
-        switch response.result {
-        case .success( _):
-          let decoder = JSONDecoder()
-          let data = try? decoder.decode(AQIDataModel.self, from: response.data!)
-          completion(true, data)
-          break
-        case .failure( _):
-          break
-        }
-      }
-    )
+                         completion: @escaping (Bool, AQIDataModel?)->Void) {
+      guard let url = aqiUrlGenerator(lat: lat, lon: lon) else { return }
+      URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
+          if let data = data {
+              if let weatherData = try? JSONDecoder().decode(AQIDataModel.self, from: data) {
+                  completion(true, weatherData)
+              } else {
+                  print("Invalid Response")
+                  completion(false, nil)
+              }
+          } else if let error = error {
+              print("HTTP Request Failed \(error)")
+              completion(false, nil)
+          }
+      }.resume()
   }
 }
