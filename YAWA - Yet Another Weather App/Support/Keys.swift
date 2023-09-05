@@ -8,5 +8,10 @@
 
 import Foundation
 
-let OPENWEATHERAPIKEY = "" // Please Email me for Vaild Keys at jainijhawan@gmail.com
-let AQIAPIKEY = "" // OR ypu can get yours at https://openweathermap.org and https://api.airvisual.com
+var OPENWEATHERAPIKEY: String = {
+    return FirebaseManager.getVlaueFor(key: "OPENWEATHERAPIKEY") ?? ""
+}()
+
+var AQIAPIKEY: String = {
+    return FirebaseManager.getVlaueFor(key: "AQIAPIKEY") ?? ""
+}()

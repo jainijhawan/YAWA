@@ -57,10 +57,12 @@ class CurrentLocationViewController: UIViewController, CAAnimationDelegate {
     var savedCitiesData: [(temprature: String, id: Int, lat: Double, lon: Double)] = []
     var isPresentedFromCurrentLocationVC = false
     var getDataAfterInternetSetting = false
+    var isPresentedFromSearch = false
     
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureFirebaseRemoteConfig()
         if citiesData.count == 0 {
             loadDataFromRealm()
         }
@@ -71,6 +73,15 @@ class CurrentLocationViewController: UIViewController, CAAnimationDelegate {
         super.viewDidAppear(animated)
         if !Reachability.isConnectedToNetwork() {
             showNoNetworkPopup()
+        }
+    }
+    func configureFirebaseRemoteConfig() {
+        FirebaseManager.setupFirebaseDefaultValues()
+        FirebaseManager.fetchAndActivate { [weak self] in
+            guard let self = self,
+                  !self.isPresentedFromCurrentLocationVC,
+                  !self.isPresentedFromSearch else { return }
+            self.getCurrentLocationWeather()
         }
     }
     
@@ -563,14 +574,18 @@ extension CurrentLocationViewController: UICollectionViewDelegate, UICollectionV
 }
 
 extension CurrentLocationViewController: CLLocationManagerDelegate {
+    func getCurrentLocationWeather() {
+        guard let currentLocation = locManager.location
+        else { return }
+        let lat = Double(currentLocation.coordinate.latitude)
+        let lon = Double(currentLocation.coordinate.longitude)
+        getcurrentCityDataWithLatAndLon(lat: lat, lon: lon)
+    }
+    
     func locationManager(_ manager: CLLocationManager,
                          didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse || status == .authorizedAlways {
-            guard let currentLocation = locManager.location
-            else { return }
-            let lat = Double(currentLocation.coordinate.latitude)
-            let lon = Double(currentLocation.coordinate.longitude)
-            getcurrentCityDataWithLatAndLon(lat: lat, lon: lon)
+            getCurrentLocationWeather()
         } else if status == .denied || status == .restricted {
             showAllowLocationPopup()
         }

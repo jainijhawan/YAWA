@@ -3,11 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		DABC33C72422DCD8BE23A68C /* Pods_YAWA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C775D00527F95C84EE34B3E /* Pods_YAWA.framework */; };
+		DE0FC4B72AA7E7300082C492 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = DE0FC4B62AA7E7300082C492 /* FirebaseRemoteConfig */; };
+		DE0FC4B92AA7E7300082C492 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE0FC4B82AA7E7300082C492 /* FirebaseRemoteConfigSwift */; };
+		DE0FC4BB2AA7E7DE0082C492 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE0FC4BA2AA7E7DE0082C492 /* GoogleService-Info.plist */; };
+		DE0FC4BD2AA7E8D50082C492 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0FC4BC2AA7E8D50082C492 /* FirebaseManager.swift */; };
 		DE76307429B7195A00180C2D /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE76307329B7195A00180C2D /* Keys.swift */; };
 		DE76307629B7395400180C2D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE76307529B7395400180C2D /* Reachability.swift */; };
 		F714AD1E255D70B30087B7D3 /* HourlyWeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F714AD1D255D70B30087B7D3 /* HourlyWeatherCollectionViewCell.swift */; };
@@ -52,6 +56,8 @@
 		0922B0EF4156935CA34BF4CF /* Pods-YAWA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YAWA.release.xcconfig"; path = "Target Support Files/Pods-YAWA/Pods-YAWA.release.xcconfig"; sourceTree = "<group>"; };
 		1C775D00527F95C84EE34B3E /* Pods_YAWA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YAWA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C879E44667FC9B116C967FD5 /* Pods-YAWA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YAWA.debug.xcconfig"; path = "Target Support Files/Pods-YAWA/Pods-YAWA.debug.xcconfig"; sourceTree = "<group>"; };
+		DE0FC4BA2AA7E7DE0082C492 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DE0FC4BC2AA7E8D50082C492 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		DE76307329B7195A00180C2D /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		DE76307529B7395400180C2D /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F714AD1D255D70B30087B7D3 /* HourlyWeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -99,7 +105,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE0FC4B92AA7E7300082C492 /* FirebaseRemoteConfigSwift in Frameworks */,
 				DABC33C72422DCD8BE23A68C /* Pods_YAWA.framework in Frameworks */,
+				DE0FC4B72AA7E7300082C492 /* FirebaseRemoteConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +147,7 @@
 			children = (
 				F765F58224B8921700BA3482 /* Constants.swift */,
 				DE76307329B7195A00180C2D /* Keys.swift */,
+				DE0FC4BC2AA7E8D50082C492 /* FirebaseManager.swift */,
 				F76AD55A24C0E70200C33A6F /* Extensions.swift */,
 				F754CDBE24C30008008CBA1D /* CenterViewFlowLayout.swift */,
 				F744126924BDE9E700B6ED97 /* Oswald-VariableFont_wght.ttf */,
@@ -185,6 +194,7 @@
 		F765F56D24B876B100BA3482 /* YAWA - Yet Another Weather App */ = {
 			isa = PBXGroup;
 			children = (
+				DE0FC4BA2AA7E7DE0082C492 /* GoogleService-Info.plist */,
 				F765F56E24B876B100BA3482 /* AppDelegate.swift */,
 				F73BEE8B258643EA006D4DD5 /* name2.png */,
 				F74CEAED24DEF4EB00B8EB93 /* APIManager.swift */,
@@ -277,6 +287,10 @@
 			dependencies = (
 			);
 			name = YAWA;
+			packageProductDependencies = (
+				DE0FC4B62AA7E7300082C492 /* FirebaseRemoteConfig */,
+				DE0FC4B82AA7E7300082C492 /* FirebaseRemoteConfigSwift */,
+			);
 			productName = "YAWA - Yet Another Weather App";
 			productReference = F765F56B24B876B100BA3482 /* YAWA.app */;
 			productType = "com.apple.product-type.application";
@@ -305,6 +319,9 @@
 				Base,
 			);
 			mainGroup = F765F56224B876B100BA3482;
+			packageReferences = (
+				DE0FC4B52AA7E72F0082C492 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = F765F56C24B876B100BA3482 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -326,6 +343,7 @@
 				F7E2ABE32584D4570074EAE2 /* Rain.gif in Resources */,
 				F7E2ABE82584D6120074EAE2 /* Mist.gif in Resources */,
 				F7E2ABDE2584D4570074EAE2 /* Cloud-levitate.gif in Resources */,
+				DE0FC4BB2AA7E7DE0082C492 /* GoogleService-Info.plist in Resources */,
 				F765F57824B876B200BA3482 /* Assets.xcassets in Resources */,
 				F765F57624B876B100BA3482 /* Main.storyboard in Resources */,
 				F7E2ABE42584D4570074EAE2 /* Sun-Cloud.gif in Resources */,
@@ -392,6 +410,7 @@
 				F74CEAEE24DEF4EB00B8EB93 /* APIManager.swift in Sources */,
 				F77F2B8124F13F950012BB9D /* AQIDataModel.swift in Sources */,
 				F76B0A9F24C24F58008ECAAE /* CityCollectionViewCell.swift in Sources */,
+				DE0FC4BD2AA7E8D50082C492 /* FirebaseManager.swift in Sources */,
 				F765F57324B876B100BA3482 /* CurrentLocationViewController.swift in Sources */,
 				F754CDBF24C30008008CBA1D /* CenterViewFlowLayout.swift in Sources */,
 				F76AD55B24C0E70200C33A6F /* Extensions.swift in Sources */,
@@ -610,6 +629,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DE0FC4B52AA7E72F0082C492 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DE0FC4B62AA7E7300082C492 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE0FC4B52AA7E72F0082C492 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		DE0FC4B82AA7E7300082C492 /* FirebaseRemoteConfigSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DE0FC4B52AA7E72F0082C492 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfigSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F765F56324B876B100BA3482 /* Project object */;
 }

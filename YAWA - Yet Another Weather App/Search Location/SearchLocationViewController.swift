@@ -130,6 +130,7 @@ class SearchLocationViewController: UIViewController {
     if screenHeight < 700 {
       currentLocationViewController.modalPresentationStyle = .fullScreen
     }
+    currentLocationViewController.isPresentedFromSearch = true
     self.present(currentLocationViewController, animated: true, completion: nil)
   }
   @IBAction func backTapped(_ sender: Any) {
